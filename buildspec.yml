@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket assignment-bucket-121 --output-template-file outputSamTemplate.yaml
+  post_build:
+    commands:
+artifacts:
+  files:
+      - samTemplate.yaml
+      - outputSamTemplate.yaml
